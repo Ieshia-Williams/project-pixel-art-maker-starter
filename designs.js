@@ -8,64 +8,87 @@ let widthInput = document.querySelector("#inputWidth");
 let submitButton = document.querySelector("#submitButton");
 
 submitButton.addEventListener("click", buttonClicked);
-colorInput.addEventListener("onchange", getColor);
-tableCell.addEventListener("click", updateCell);
+colorInput.addEventListener("onchange", setColor);
+tableCell.addEventListener("click", setColor);
 
 // When size is submitted by the user, call makeGrid()
 function buttonClicked(e) {
-    makeGrid;
+    try {
+        makeGrid;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function makeGrid() {
     // Your code goes here!
     let table = document.querySelector("#pixelCanvas");
-    tableCell = designCanvas(table);
-    console.log(tableCell);
+    try {
+        tableCell = designCanvas(table);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-function removeTable(table) {
-    table.remove;
-}
-
-function updateCell(e) {
+function setColor(e) {
     let cell = e.target.closest("td");
-    if (!cell) {
-        return;
-    } else {
+
+    try {
         let row = cell.parentElement;
         document.getElementById("pixelCanvas").rows[row.rowIndex].cells[
             cell.cellIndex
         ].bgColor = getColor();
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return;
     }
 }
 
 function getColor() {
     let currentColor = colorInput.value;
-    return currentColor;
+    try {
+        return currentColor;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function setHeight() {
-    return heightInput.valueAsNumber;
+    try {
+        return heightInput.valueAsNumber;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function setWidth() {
-    return widthInput.valueAsNumber;
+    try {
+        return widthInput.valueAsNumber;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function designCanvas(table) {
     let height = setHeight();
     let width = setWidth();
 
-    if (table.rows.length > 0) {
-        removeTable(table);
-    } else {
+    try {
+        table.innerHTML = "";
+    } catch (error) {
+        console.error(error);
+    }
+    try {
         for (index = 0; index < height; index++) {
             let row = table.insertRow(index);
             for (indexJ = 0; indexJ < width; indexJ++) {
                 row.insertCell(indexJ);
             }
         }
+        tableCell = document.getElementsByTagName("td");
+        return tableCell;
+    } catch (error) {
+        console.error(error);
     }
-    tableCell = document.getElementsByTagName("td");
-    return tableCell;
 }

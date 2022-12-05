@@ -1,10 +1,12 @@
 body {
     text-align: center;
+    background-color: rgba(255, 205, 243, 0.425);
 }
 
 h1 {
+    color: rgb(33, 130, 168);
     font-family: Monoton;
-    font-size: 70px;
+    font-size: 75px;
     margin: 0.2em;
 }
 
@@ -19,7 +21,7 @@ h2:first-of-type {
 table,
 tr,
 td {
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 table {
@@ -35,6 +37,6 @@ td {
     width: 20px;
 }
 
-input[type=number] {
-    width: 6em;
+input[type="number"] {
+    width: 10em;
 }
