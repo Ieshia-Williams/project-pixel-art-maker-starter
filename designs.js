@@ -13,88 +13,103 @@ let heightInput = document.querySelector("#inputHeight");
 let widthInput = document.querySelector("#inputWidth");
 let submitButton = document.querySelector("#submitButton");
 
+// Listen for the following events
 submitButton.addEventListener("click", buttonClicked);
 colorInput.addEventListener("onchange", setColor);
 tableCell.addEventListener("click", setColor);
 
 // When size is submitted by the user, call makeGrid()
 function buttonClicked(e) {
-    try {
-        makeGrid;
-    } catch (error) {
-        console.error(error);
-    }
+  try {
+    makeGrid;
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
 }
 
 function makeGrid() {
-    // Your code goes here!
-    let table = document.querySelector("#pixelCanvas");
-    try {
-        tableCell = designCanvas(table);
-    } catch (error) {
-        console.error(error);
-    }
+  // Your code goes here!
+  // initialize table
+  let table = document.querySelector("#pixelCanvas");
+  try {
+    tableCell = designCanvas(table);
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  } finally {
+    return tableCell;
+  }
 }
 
+// function to set the color of the cell
 function setColor(e) {
-    let cell = e.target.closest("td");
+  // grabs the cell that was just clicked
+  let cell = e.target.closest("td");
 
-    try {
-        let row = cell.parentElement;
-        document.getElementById("pixelCanvas").rows[row.rowIndex].cells[
-            cell.cellIndex
-        ].bgColor = getColor();
-    } catch (error) {
-        console.error(error);
-    } finally {
-        return;
-    }
+  try {
+    let row = cell.parentElement;
+    document.getElementById("pixelCanvas").rows[row.rowIndex].cells[
+      cell.cellIndex
+    ].bgColor = getColor(); // using getColor set the color of selected cell to the selected color
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  } finally {
+    return;
+  }
 }
 
 function getColor() {
+  // get the color selected by the user and return it
+  try {
     let currentColor = colorInput.value;
-    try {
-        return currentColor;
-    } catch (error) {
-        console.error(error);
-    }
+    return currentColor;
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
 }
 
 function setHeight() {
-    try {
-        return heightInput.valueAsNumber;
-    } catch (error) {
-        console.error(error);
-    }
+  try {
+    // set the height of the table
+    return heightInput.valueAsNumber;
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
 }
 
 function setWidth() {
-    try {
-        return widthInput.valueAsNumber;
-    } catch (error) {
-        console.error(error);
-    }
+  try {
+    // set the width of the table
+    return widthInput.valueAsNumber;
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
 }
 
 function designCanvas(table) {
-    let height = setHeight();
-    let width = setWidth();
+  // use height and width function expressions
+  // to declare and assign values of height and width
+  let height = setHeight();
+  let width = setWidth();
 
-    try {
-        table.innerHTML = "";
-    } catch (error) {
-        console.error(error);
+  try {
+    // set the initial value of innerHTML for table to null
+    table.innerHTML = "";
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
+  // for the height and width selected by user
+  // generate the table
+  try {
+    for (index = 0; index < height; index++) {
+      let row = table.insertRow(index);
+      for (indexJ = 0; indexJ < width; indexJ++) {
+        row.insertCell(indexJ);
+      }
     }
-    try {
-        for (index = 0; index < height; index++) {
-            let row = table.insertRow(index);
-            for (indexJ = 0; indexJ < width; indexJ++) {
-                row.insertCell(indexJ);
-            }
-        }
-        tableCell = document.getElementsByTagName("td");
-        return tableCell;
-    } catch (error) {
-        console.error(error);
-    }
+    // assign new value to tableCell variable and return it
+    tableCell = document.getElementsByTagName("td");
+    return tableCell;
+  } catch (error) {
+    console.error(error); // if error occurs, log it to console
+  }
 }
